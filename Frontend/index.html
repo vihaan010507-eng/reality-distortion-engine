@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reality Distortion Engine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1> Reality Distortion Engine</h1>
+      <p class="subtitle">Paste a news headline or article to detect misinformation</p>
+    </header>
+
+    <main>
+      <div class="input-section">
+        <textarea
+          id="news-input"
+          placeholder="Paste a news headline, paragraph, or article here..."
+          rows="6"
+        ></textarea>
+        <div class="input-controls">
+          <span id="char-count">0 characters</span>
+          <button id="analyze-btn" onclick="analyzeText()">Analyze Text</button>
+        </div>
+      </div>
+
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>Analyzing...</span>
+      </div>
+
+      <div id="result-section" class="result-section hidden">
+        <!-- Verdict banner -->
+        <div id="verdict-banner" class="verdict-banner">
+          <span id="verdict-label">FAKE</span>
+          <span id="verdict-confidence">87% confidence</span>
+        </div>
+
+        <!-- Score bars -->
+        <div class="scores">
+          <div class="score-item">
+            <span class="score-label">ML Model Score</span>
+            <div class="score-bar-track">
+              <div id="ml-bar" class="score-bar"></div>
+            </div>
+            <span id="ml-pct" class="score-pct">0%</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Rule-Based Score</span>
+            <div class="score-bar-track">
+              <div id="rule-bar" class="score-bar rule"></div>
+            </div>
+            <span id="rule-pct" class="score-pct">0%</span>
+          </div>
+        </div>
+
+        <!-- Flags list -->
+        <div id="flags-section" class="flags-section hidden">
+          <h3>Red flags detected</h3>
+          <ul id="flags-list"></ul>
+        </div>
+
+        <!-- Explanation -->
+        <div class="explanation-section">
+          <h3>Explanation</h3>
+          <p id="explanation-text"></p>
+        </div>
+
+        <button class="reset-btn" onclick="resetForm()">Analyze Another</button>
+      </div>
+
+      <div id="error-section" class="error-section hidden">
+        <p id="error-text"></p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Built with Flask + scikit-learn · Always verify with trusted sources</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
